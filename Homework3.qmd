@@ -62,3 +62,52 @@ summary(kelp_lm)
 To evaluate the strength of the relationship between ocean temperature and giant kelp frond elongation rate, I used a linear regression because both variables are continuous and I was interested in determining whether temperature could predict kelp growth rate.
 
 The linear regression showed a relationship between ocean temperature and giant kelp frond elongation rate (report the slope coefficient, (R^2), and p-value from your output here). This suggests that as ocean temperature changes, kelp elongation rate also changes in a predictable way.
+
+**e.**
+The results of this test suggest that ocean temperature is related to giant kelp frond elongation rate, meaning that changes in temperature may influence how quickly giant kelp grows. If warmer temperatures are associated with reduced growth rates, this could indicate that continued ocean warming from climate change may negatively impact giant kelp forest health and productivity. These findings highlight the importance of monitoring ocean temperature trends and protecting kelp ecosystems that may be vulnerable to warming conditions.
+
+**f.**
+```{r}
+#| message: false
+
+# Run a correlation test 
+
+cor.test(kelp$temp_c, kelp$kelp_elong)
+```
+
+The correlation test and the linear regression would most likely lead to the same decision about the null hypothesis because both tests evaluate the relationship between ocean temperature and giant kelp frond elongation rate. 
+However, the correlation test measures the strength and direction of the association between the two continuous variables using the correlation coefficient (r), while the linear regression additionally models how temperature predicts changes in elongation rate through the regression slope. As a result, both tests should provide similar explanations about whether the relationship is positive or negative, and statistically significant.
+
+## Problem 2. Personal data
+
+**a.**
+```{r}
+#| message: false
+# base layer: ggplot using my_data
+ggplot(data = my_data,
+aes(x = shoe_type, # maps show type to x-axis
+y = duration_s, # maps duration to y-axis
+fill = shoe_type # fills boplots with color based on shoe type
+)) +
+geom_boxplot() + #second layer: boxplot
+# third layer: jitterplot
+geom_jitter(
+width = 0.1, # spreads points horizontal
+alpha = 0.4 # makes points semi-transparent
+) +
+scale_fill_manual(values = c( #customizes colors
+"Reebok" = "skyblue",
+"Vans" = "darkorchid"
+)) +
+labs( # label x- and y- axes along with the title
+x = "Shoe Type",
+y = "Duration (s)",
+title = "Wearing Reebok Shortens Duration of Walk"
+) +
+theme_light() + # apply different theme
+theme(legend.position = "none") # remove legend
+```
+**b.**
+**Figure 1.**
+Boxplots and jittered data points comparing walking duration, in seconds, between wearing Reebok and Vans shoes. The boxplots display the median, interquartile range, and overall spread of walking durations for each shoe type, while the jittered points show individual observations. Reebok shoes generally showed shorter walking durations and less variation compared to Vans shoes. Colors were used to distinguish shoe types, with Reebok represented in blue and Vans represented in purple.
+
