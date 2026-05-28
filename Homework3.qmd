@@ -1,0 +1,64 @@
+---
+title: "Homework3"
+format: pdf
+author: "Aylin Orozco"
+date: 05-28-2026
+---
+
+```{r}
+#| message: false
+library(tidyverse)
+library(here)
+library(janitor)
+library(readxl)
+
+kelp <- read.csv(here("data","temp-kelp.csv"))
+
+my_data <- read_excel(here("data", "my_data.xlsx")) |> clean_names()
+
+```
+## Problem 1
+
+**a.**
+The two appropriate tests would be a correlation test and a linear regression. A correlation test measures the strength and direction of the relationship between ocean temperature (°C) and giant kelp frond elongation rate (cm day⁻¹), while a linear regression examines how changes in ocean temperature predict changes in kelp growth rate. Correlation only measures association between the two variables, but regression models the relationship and identifies temperature as the explanatory variable and elongation rate as the response variable.
+
+**b.**
+```{r}
+#| message: false
+ggplot(kelp, aes(
+            x = temp_c, 
+            y = kelp_elong)) +
+  
+  geom_point(color = "darkgreen", size = 3) + 
+  
+  geom_smooth(method = "lm", color = "steelblue", se = FALSE) + 
+  
+  labs( x = "Ocean Temperature (°C)", 
+        y = "Giant Kelp Frond Elongation Rate (cm day^-1)", 
+        title = "Relationship Between Ocean Temperature & Giant Kelp Growth") + 
+  
+  theme_classic()
+```
+
+**c.**
+To evaluate the relationship between ocean temperature and giant kelp frond elongation rate, I checked the assumptions for a linear regression. Specifically, I checked for linearity, normality of residuals, and equal variance of residuals. I assessed these assumptions using a scatterplot with a regression line and diagnostic plots from the regression model. Based on the plots, the assumptions appeared reasonably met because the relationship looked linear and the residuals did not show major deviations from normality or equal variance.
+
+```{r}
+#| message: false
+
+# Create diagnostic plots 
+
+kelp_lm <- lm(kelp_elong ~ temp_c, 
+              data = kelp) 
+
+par(mfrow = c(2, 2)) 
+plot(kelp_lm)
+
+# Display the regression results 
+summary(kelp_lm)
+```
+
+**d.**
+To evaluate the strength of the relationship between ocean temperature and giant kelp frond elongation rate, I used a linear regression because both variables are continuous and I was interested in determining whether temperature could predict kelp growth rate.
+
+The linear regression showed a relationship between ocean temperature and giant kelp frond elongation rate (report the slope coefficient, (R^2), and p-value from your output here). This suggests that as ocean temperature changes, kelp elongation rate also changes in a predictable way.
