@@ -111,3 +111,14 @@ theme(legend.position = "none") # remove legend
 **Figure 1.**
 Boxplots and jittered data points comparing walking duration, in seconds, between wearing Reebok and Vans shoes. The boxplots display the median, interquartile range, and overall spread of walking durations for each shoe type, while the jittered points show individual observations. Reebok shoes generally showed shorter walking durations and less variation compared to Vans shoes. Colors were used to distinguish shoe types, with Reebok represented in blue and Vans represented in purple.
 
+## Problem 3. Affective visualization
+
+**a.**
+An affective visualization of my data about walking to work in different shoes could represent both the duration of each walk and how each pair of shoes felt to wear. Instead of only showing numerical differences, the visualization could use simple visual elements like color or shape to represent comfort level or effort. More comfortable shoes could be shown with lighter or more consistent visuals, while less comfortable shoes could be represented with darker or more irregular patterns. This would help show not just the measured walking times, but also the overall experience associated with each shoe type.
+
+**b.**
+
+```{r}
+#| message: false
+knitr::include_graphics(here::here("data", "visualization.png"))
+```
